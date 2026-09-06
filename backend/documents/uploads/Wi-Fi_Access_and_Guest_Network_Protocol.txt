@@ -1,0 +1,15 @@
+COMPANY OFFICIAL IT PROTOCOL: WI-FI & GUEST NETWORK ACCESS
+
+1. Employee Wi-Fi Network:
+   - Network SSID: Corporate_Secure
+   - Security: WPA2-Enterprise (802.1X)
+   - Credentials: Use your standard company SSO username and password.
+
+2. Guest Wi-Fi Network:
+   - Network SSID: Company_Guest
+   - Guest Wi-Fi Password: CorporateGuest2026!
+   - Note: Guest access is limited to standard web browsing (HTTP/HTTPS) and requires re-authentication every 24 hours.
+
+3. Troubleshooting Wi-Fi Issues:
+   - If unable to connect, forget network 'Corporate_Secure' and re-enter SSO password.
+   - For guest users, verify password 'CorporateGuest2026!' (case-sensitive).

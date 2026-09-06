@@ -1,0 +1,15 @@
+COMPANY OFFICIAL IT PROTOCOL: VPN ACCESS & TROUBLESHOOTING
+
+1. VPN Client Setup:
+   - Client: Cisco AnyConnect Secure Mobility Client
+   - Server Portal Address: vpn.company.com
+
+2. Connection Steps:
+   - Launch Cisco AnyConnect.
+   - Enter target server: vpn.company.com
+   - Authenticate with 2FA / Duo Security push notification.
+
+3. Error 800 / Connection Timeout Troubleshooting:
+   - Open Command Prompt as Administrator.
+   - Run: ipconfig /flushdns
+   - Restart the Cisco AnyConnect service and try connecting again.

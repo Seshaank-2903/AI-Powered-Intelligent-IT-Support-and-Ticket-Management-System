@@ -1,0 +1,14 @@
+COMPANY OFFICIAL IT PROTOCOL: OFFICE PRINTER CONFIGURATION
+
+1. 4th Floor Network Printer:
+   - Model: HP LaserJet Enterprise M608
+   - IP Address: 192.168.10.45
+   - Location: 4th Floor Copy Room (East Wing)
+
+2. 2nd Floor Network Printer:
+   - Model: Canon ImageRUNNER ADVANCE
+   - IP Address: 192.168.10.42
+   - Location: 2nd Floor Central Hub
+
+3. Installation:
+   - Add printer via Windows Settings -> Devices -> Printers & Scanners -> Add printer using IP address.
