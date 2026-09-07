@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { TicketCheck, Clock, ShieldAlert, Sparkles, TrendingUp, TrendingDown, BrainCircuit, ArrowRight, RefreshCw, FileText } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 const StatCard = ({ title, value, icon: Icon, trend, isPositive, color }: any) => (
   <div className="glass-card rounded-2xl p-6 relative overflow-hidden transition-all duration-300 group hover:-translate-y-1">
@@ -48,30 +49,30 @@ const Dashboard = () => {
       // 1. Overview analytics
       let overviewData: any = null;
       try {
-        const overviewRes = await axios.get('http://localhost:8000/api/analytics/overview', { headers: authHeader });
+        const overviewRes = await axios.get(`${API_BASE_URL}/api/analytics/overview`, { headers: authHeader });
         overviewData = overviewRes.data;
       } catch (e) {
-        const retryRes = await axios.get('http://localhost:8000/api/analytics/overview').catch(() => null);
+        const retryRes = await axios.get(`${API_BASE_URL}/api/analytics/overview`).catch(() => null);
         overviewData = retryRes?.data;
       }
 
       // 2. Recent tickets
       let ticketsData: any[] = [];
       try {
-        const ticketsRes = await axios.get('http://localhost:8000/api/tickets/', { headers: authHeader });
+        const ticketsRes = await axios.get(`${API_BASE_URL}/api/tickets/`, { headers: authHeader });
         ticketsData = Array.isArray(ticketsRes.data) ? ticketsRes.data : [];
       } catch (e) {
-        const retryTickets = await axios.get('http://localhost:8000/api/tickets/').catch(() => null);
+        const retryTickets = await axios.get(`${API_BASE_URL}/api/tickets/`).catch(() => null);
         ticketsData = Array.isArray(retryTickets?.data) ? retryTickets.data : [];
       }
 
       // 3. Knowledge gaps
       let gapsData: any[] = [];
       try {
-        const gapsRes = await axios.get('http://localhost:8000/api/knowledge-gaps/', { headers: authHeader });
+        const gapsRes = await axios.get(`${API_BASE_URL}/api/knowledge-gaps/`, { headers: authHeader });
         gapsData = Array.isArray(gapsRes.data) ? gapsRes.data : [];
       } catch (e) {
-        const retryGaps = await axios.get('http://localhost:8000/api/knowledge-gaps/').catch(() => null);
+        const retryGaps = await axios.get(`${API_BASE_URL}/api/knowledge-gaps/`).catch(() => null);
         gapsData = Array.isArray(retryGaps?.data) ? retryGaps.data : [];
       }
 

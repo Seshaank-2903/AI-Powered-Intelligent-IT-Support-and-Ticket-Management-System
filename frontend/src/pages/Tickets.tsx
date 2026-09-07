@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import clsx from 'clsx';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 interface MessageItem {
   id: string;
@@ -68,12 +69,12 @@ const Tickets = () => {
       const token = localStorage.getItem('token');
       let resData = null;
       try {
-        const res = await axios.get('http://localhost:8000/api/tickets/', {
+        const res = await axios.get(`${API_BASE_URL}/api/tickets/`, {
           headers: token ? { Authorization: `Bearer ${token}` } : {}
         });
         resData = res.data;
       } catch (e) {
-        const retryRes = await axios.get('http://localhost:8000/api/tickets/').catch(() => null);
+        const retryRes = await axios.get(`${API_BASE_URL}/api/tickets/`).catch(() => null);
         resData = retryRes?.data;
       }
 
@@ -104,12 +105,12 @@ const Tickets = () => {
       const token = localStorage.getItem('token');
       let msgsData = null;
       try {
-        const res = await axios.get(`http://localhost:8000/api/tickets/${ticketId}/messages`, {
+        const res = await axios.get(`${API_BASE_URL}/api/tickets/${ticketId}/messages`, {
           headers: token ? { Authorization: `Bearer ${token}` } : {}
         });
         msgsData = res.data;
       } catch (e) {
-        const retryRes = await axios.get(`http://localhost:8000/api/tickets/${ticketId}/messages`).catch(() => null);
+        const retryRes = await axios.get(`${API_BASE_URL}/api/tickets/${ticketId}/messages`).catch(() => null);
         msgsData = retryRes?.data;
       }
 
@@ -137,7 +138,7 @@ const Tickets = () => {
     setActionLoading(true);
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`http://localhost:8000/api/tickets/${selectedTicket.id}/resolve`, {}, {
+      await axios.post(`${API_BASE_URL}/api/tickets/${selectedTicket.id}/resolve`, {}, {
         headers: token ? { Authorization: `Bearer ${token}` } : {}
       });
       setTickets(prev => prev.map(t => t.id === selectedTicket.id ? { ...t, status: 'RESOLVED' } : t));
@@ -155,7 +156,7 @@ const Tickets = () => {
     setActionLoading(true);
     try {
       const token = localStorage.getItem('token');
-      await axios.post(`http://localhost:8000/api/tickets/${selectedTicket.id}/close`, {}, {
+      await axios.post(`${API_BASE_URL}/api/tickets/${selectedTicket.id}/close`, {}, {
         headers: token ? { Authorization: `Bearer ${token}` } : {}
       });
       setTickets(prev => prev.map(t => t.id === selectedTicket.id ? { ...t, status: 'CLOSED' } : t));
@@ -175,7 +176,7 @@ const Tickets = () => {
     setActionLoading(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post(`http://localhost:8000/api/tickets/${selectedTicket.id}/messages`, {
+      const res = await axios.post(`${API_BASE_URL}/api/tickets/${selectedTicket.id}/messages`, {
         message: adminReply,
         sender_type: 'IT_AGENT',
         sender_id: 'IT_ADMIN'

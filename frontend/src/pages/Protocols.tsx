@@ -13,6 +13,7 @@ import {
   File
 } from 'lucide-react';
 import axios from 'axios';
+import { API_BASE_URL } from '../config';
 
 interface ProtocolItem {
   id: string;
@@ -57,12 +58,12 @@ const Protocols = () => {
         const token = localStorage.getItem('token');
         let resData = null;
         try {
-          const res = await axios.get('http://localhost:8000/api/protocols/', {
+          const res = await axios.get(`${API_BASE_URL}/api/protocols/`, {
             headers: token ? { Authorization: `Bearer ${token}` } : {}
           });
           resData = res.data;
         } catch (e) {
-          const retryRes = await axios.get('http://localhost:8000/api/protocols/').catch(() => null);
+          const retryRes = await axios.get(`${API_BASE_URL}/api/protocols/`).catch(() => null);
           resData = retryRes?.data;
         }
 
@@ -130,7 +131,7 @@ const Protocols = () => {
 
       setUploadProgress(60);
 
-      const res = await axios.post('http://localhost:8000/api/protocols/', formData, {
+      const res = await axios.post(`${API_BASE_URL}/api/protocols/`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
           ...(token ? { Authorization: `Bearer ${token}` } : {})
